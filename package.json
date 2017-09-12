@@ -2,18 +2,11 @@
   "name": "todo-restify",
   "version": "1.0.0",
   "description": "simple CRUD app with RESTify",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anneeb/todo-restify.git"
-  },
+  "main": "server.js",
   "author": "Annee Barrett",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/anneeb/todo-restify/issues"
-  },
-  "homepage": "https://github.com/anneeb/todo-restify#readme"
+  "dependencies": {
+    "mysql": "^2.14.1",
+    "restify": "^5.2.0"
+  }
 }
