@@ -1,14 +1,4 @@
 {
-  "todo": {
-    "additionalProperties": false,
-    "type": "object",
-    "properties": {
-      "id": {"type": "integer"},
-      "title": { "type": "string" },
-      "done": { "type": "boolean" }
-    },
-  "required": ["id", "title", "done"]
-  },
   "putRequest": {
     "additionalProperties": false,
     "type": "object",

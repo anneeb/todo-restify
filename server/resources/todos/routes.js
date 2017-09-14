@@ -35,14 +35,11 @@ module.exports = (server) => {
    *     consumes:
    *       - application/json
    *     parameters:
-   *       - name: title
-   *         in: body
-   *         type: string
-   *         required: true
-   *       - name: done
-   *         in: body
-   *         type: boolean
-   *         required: true
+   *        - name: todo
+   *          in: body
+   *          description: the todo to create
+   *          schema:
+   *            $ref: '#/definitions/postRequest'
    *     responses:
    *       200:
    *         description: newly created todo
@@ -97,18 +94,11 @@ module.exports = (server) => {
    *     consumes:
    *       - application/json
    *     parameters:
-   *       - name: todo_id
-   *         in: path
-   *         type: string
-   *         required: true
-   *       - name: title
-   *         in: body
-   *         type: string
-   *         required: false
-   *       - name: done
-   *         in: body
-   *         type: boolean
-   *         required: false
+   *        - name: todo
+   *          in: body
+   *          description: the updates to the todo
+   *          schema:
+   *            $ref: '#/definitions/putRequest'
    *     responses:
    *       200:
    *         description: a body containing updated todo data

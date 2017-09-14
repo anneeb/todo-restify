@@ -25,6 +25,7 @@ module.exports = () => {
         version: pkg.version,
         description: pkg.description,
       },
+      schema: ['http'],
       host: 'localhost:3000',
       basePath: '/',
     },
