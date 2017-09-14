@@ -1,4 +1,4 @@
-const { NotFoundError, InternalServerError } = require('restify-errors');
+const { BadRequestError, NotFoundError, InternalServerError } = require('restify-errors');
 
 const getTodos = (req, res, next) => {
   req.db.getTodos()
@@ -16,14 +16,22 @@ const returnTodos = (req, res, next) => {
   todos = req.ctx.todos;
   res.send(200, todos);
   return next();
-}
+};
+
+const validatePostRequest = (req, res, next) => {
+  const { title, done } = req.body
+  if (title && (done || done === false)) {
+    return next();
+  }
+  return next(new BadRequestError());
+};
 
 const createTodo = (req, res, next) => {
   const todoData = Object.assign({}, req.body);
   req.db.createTodo(todoData)
   .then((id) => {
     if (!id) {
-      return next (new InternalServerError());
+      return next(new InternalServerError());
     }
     req.ctx.todo = Object.assign({}, { id });
     return next();
@@ -31,7 +39,7 @@ const createTodo = (req, res, next) => {
   .catch((err) => {
     return next(new InternalServerError());
   });
-}
+};
 
 const getTodo = (req, res, next) => {
   const todoId = req.params.todo_id || req.ctx.todo.id;
@@ -53,6 +61,14 @@ const returnTodo = (req, res, next) => {
   todo = req.ctx.todo;
   res.send(200, todo);
   return next();
+};
+
+const validatePutRequest = (req, res, next) => {
+  const { title, done } = req.body;
+  if (title || done || done === false) {
+    return next();
+  }
+  return next(new BadRequestError());
 };
 
 const updateTodo = (req, res, next) => {
@@ -82,9 +98,11 @@ const destroyTodo = (req, res, next) => {
 module.exports = {
   getTodos,
   returnTodos,
+  validatePostRequest,
   createTodo,
   getTodo,
   returnTodo,
+  validatePutRequest,
   updateTodo,
   destroyTodo
 }

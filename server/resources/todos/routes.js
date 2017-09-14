@@ -51,6 +51,7 @@ module.exports = (server) => {
    */
 
   server.post('/todos',
+    todoHandlers.validatePostRequest,
     todoHandlers.createTodo,
     todoHandlers.getTodo,
     todoHandlers.returnTodo
@@ -117,6 +118,7 @@ module.exports = (server) => {
 
   server.put('/todos/:todo_id',
     todoHandlers.getTodo,
+    todoHandlers.validatePutRequest,
     todoHandlers.updateTodo,
     todoHandlers.getTodo,
     todoHandlers.returnTodo
