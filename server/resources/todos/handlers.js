@@ -3,9 +3,6 @@ const { NotFoundError, InternalServerError } = require('restify-errors');
 const getTodos = (req, res, next) => {
   req.db.getTodos()
   .then((todos) => {
-    if (!todos) {
-      return next(new NotFoundError());
-    }
     req.ctx.todos = todos;
     return next();
   })

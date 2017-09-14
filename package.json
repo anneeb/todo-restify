@@ -8,6 +8,10 @@
   "scripts": {
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anneeb/todo-restify.git"
+  },
   "dependencies": {
     "db-migrate": "^0.10.0-beta.24",
     "db-migrate-mysql": "^1.1.10",
@@ -16,6 +20,7 @@
     "mysql": "^2.14.1",
     "path": "^0.12.7",
     "restify": "^5.2.0",
-    "restify-errors": "^5.0.0"
+    "restify-errors": "^5.0.0",
+    "swagger-jsdoc": "^1.9.7"
   }
 }
