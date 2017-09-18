@@ -11,13 +11,39 @@ function createServer(db, config) {
     name: pkg.name
   });
 
+  const corsHeaders = [
+    "authorization",
+    "withcredentials",
+    "x-requested-with",
+    "x-forwarded-for",
+    "x-real-ip",
+    "x-customheader",
+    "user-agent",
+    "keep-alive",
+    "host",
+    "origin",
+    "referrer",
+    "accept",
+    "connection",
+    "upgrade",
+    "content-type",
+    "dnt",
+    "if-modified-since",
+    "cache-control"
+  ];
+
   server.use(restify.plugins.jsonBodyParser());
   server.use(restify.plugins.queryParser());
 
   server.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, PATCH, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', '*');
+    res.setHeader('Access-Control-Allow-Headers', corsHeaders.join(","));
+    next();
+  });
+
+  server.opts(/.*/, function (req, res, next) {
+    res.send(204);
     next();
   });
 
