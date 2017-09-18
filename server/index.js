@@ -1,6 +1,6 @@
 const restify = require('restify');
-const pkg = require("../package.json");
-const createRoutes = require("./routes.js");
+const pkg = require('../package.json');
+const createRoutes = require('./routes.js');
 
 function createServer(db, config) {
   if (!db) {
@@ -15,10 +15,10 @@ function createServer(db, config) {
   server.use(restify.plugins.queryParser());
 
   server.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, PATCH, OPTIONS')
-    res.setHeader('Access-Control-Allow-Headers', 'content-type, api_key, Authorization')
-    next()
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, PATCH, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    next();
   });
 
   server.get('/', (req, res) => {
