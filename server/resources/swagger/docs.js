@@ -25,12 +25,18 @@ module.exports = () => {
         version: pkg.version,
         description: pkg.description,
       },
-      schemes: ['http'],
       host: 'localhost:3000',
       basePath: '/',
+      schemes: ['http']
     },
     apis
   });
+
+  // Gateway Mappings
+  spec.info['x-gateway-basepath'] = '/4.0',
+  spec.info['x-gateway-mappings'] = [
+    { resource: 'todos', path: '/todos' }
+  ];
 
   schemaPaths.forEach((route) => {
     const filepath = path.resolve(__dirname, route);
